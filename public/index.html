@@ -8,10 +8,30 @@
   <body>
     <div id="app">
       <h1>Countries</h1>
-      <p>Total population: {{totalPopulation}} </p>
-      <hr>
-      <input type="text" v-on:submit="getCountry()">Pick a country</input>
-      <input type="submit" value="Choose"/>
+      <p>Total population: {{fetchTotalPopulation}} </p>
+
+
+      <label for="country-select">Select a Country:</label>
+      <select id="country-select" v-model="chosenCountry">
+      <option disabled value="">Select a country</option>
+      <option v-for="country in countryList" :value="country">{{country.name}}</option>
+      </select>
+
+      <div id="chosen-country" v-if="chosenCountry">
+      <h2> {{chosenCountry.name}} </h2>
+      <p> Population: {{chosenCountry.population}} </p>
+      <img id="countryFlag" :src="chosenCountry.flag" />
+      <button v-if="!favoriteCountries.includes(chosenCountry)" v-on:click="addCountry">Add To Favorites</button>
+      </div>
+
+      <div id="favorite-countries">
+        <h2>Favorite Countries:</h2>
+        <ul>
+          <li v-for="country in favoriteCountries"> {{country.name}} </li>
+        </ul>
+
+      </div>
+
     </div>
   </body>
 </html>
