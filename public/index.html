@@ -8,7 +8,10 @@
   <body>
     <div id="app">
       <h1>Countries</h1>
-      <p>Total population: {{totalPopulation}}</p>
+      <p>Total population: {{totalPopulation}} </p>
+      <hr>
+      <input type="text" v-on:submit="getCountry()">Pick a country</input>
+      <input type="submit" value="Choose"/>
     </div>
   </body>
 </html>
